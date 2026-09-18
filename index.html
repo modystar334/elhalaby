@@ -2013,6 +2013,65 @@ let currentQty = 1;
 
 
 /* =========================
+   LOAD SAVED CART
+========================= */
+
+function loadCart(){
+
+  try{
+
+    const savedCart =
+      localStorage.getItem(
+        "halabyCart"
+      );
+
+    if(savedCart){
+
+      const parsedCart =
+        JSON.parse(savedCart);
+
+      if(Array.isArray(parsedCart)){
+
+        cart = parsedCart;
+
+      }
+
+    }
+
+  }catch(error){
+
+    cart = [];
+
+  }
+
+}
+
+
+/* =========================
+   SAVE CART
+========================= */
+
+function saveCart(){
+
+  try{
+
+    localStorage.setItem(
+      "halabyCart",
+      JSON.stringify(cart)
+    );
+
+  }catch(error){
+
+    console.log(
+      "تعذر حفظ السلة"
+    );
+
+  }
+
+}
+
+
+/* =========================
    FIND PRODUCT
 ========================= */
 
@@ -2472,6 +2531,10 @@ function addToCart(){
   }
 
 
+  /* حفظ السلة */
+
+  saveCart();
+
   updateCartCount();
 
   closeProduct();
@@ -2789,6 +2852,10 @@ function changeCart(
   }
 
 
+  /* حفظ التغيير */
+
+  saveCart();
+
   updateCartCount();
 
   renderCart();
@@ -2807,6 +2874,10 @@ function removeCart(index){
     1
   );
 
+
+  /* حفظ التغيير */
+
+  saveCart();
 
   updateCartCount();
 
@@ -3210,6 +3281,12 @@ document
 /* =========================
    START
 ========================= */
+
+/* تحميل السلة القديمة أولاً */
+
+loadCart();
+
+/* ثم عرض المنتجات والعدد */
 
 renderProducts();
 
