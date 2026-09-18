@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -116,35 +117,6 @@ header{
 }
 
 
-/* OFFER CARD */
-
-.header-offer{
-  width:155px;
-  height:64px;
-
-  border:1px solid #d6a849;
-  border-radius:13px;
-
-  overflow:hidden;
-
-  background:#21140c;
-
-  box-shadow:
-  0 6px 20px rgba(0,0,0,.35);
-
-  flex-shrink:0;
-}
-
-.header-offer img{
-  width:100%;
-  height:100%;
-
-  display:block;
-
-  object-fit:cover;
-}
-
-
 /* CART */
 
 .cart-btn{
@@ -236,10 +208,75 @@ header{
   border-radius:50%;
 }
 
+
+/* HERO CONTENT */
+
 .hero-content{
   position:relative;
   z-index:2;
 }
+
+
+/* =========================
+   HERO OFFER CARD
+========================= */
+
+.hero-main{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:35px;
+
+  width:100%;
+}
+
+.hero-offer{
+  width:150px;
+  height:230px;
+
+  border:1px solid #d6a849;
+
+  border-radius:18px;
+
+  overflow:hidden;
+
+  background:#21140c;
+
+  box-shadow:
+  0 10px 35px rgba(0,0,0,.45),
+  0 0 25px rgba(214,168,73,.08);
+
+  flex-shrink:0;
+
+  transition:.35s;
+}
+
+.hero-offer:hover{
+  transform:
+  translateY(-5px);
+
+  box-shadow:
+  0 15px 40px rgba(0,0,0,.55),
+  0 0 30px rgba(214,168,73,.14);
+}
+
+.hero-offer img{
+  width:100%;
+  height:100%;
+
+  display:block;
+
+  object-fit:cover;
+}
+
+
+.hero-text{
+  text-align:center;
+}
+
 
 .hero-small{
   color:#d6a849;
@@ -1071,6 +1108,15 @@ footer strong{
     repeat(2,1fr);
   }
 
+  .hero-main{
+    gap:20px;
+  }
+
+  .hero-offer{
+    width:115px;
+    height:190px;
+  }
+
 }
 
 
@@ -1108,13 +1154,6 @@ footer strong{
     font-size:9px;
   }
 
-  .header-offer{
-    width:82px;
-    height:48px;
-
-    border-radius:10px;
-  }
-
   .cart-btn{
     padding:
     8px 9px;
@@ -1135,6 +1174,19 @@ footer strong{
 
     padding:
     55px 18px;
+  }
+
+  .hero-main{
+    flex-direction:column;
+
+    gap:22px;
+  }
+
+  .hero-offer{
+    width:115px;
+    height:155px;
+
+    order:-1;
   }
 
   .hero h1{
@@ -1189,7 +1241,6 @@ footer strong{
 
   <div class="navbar">
 
-
     <!-- LOGO -->
 
     <div class="logo">
@@ -1209,18 +1260,6 @@ footer strong{
         </span>
 
       </div>
-
-    </div>
-
-
-    <!-- OFFER -->
-
-    <div class="header-offer">
-
-      <img
-        src="images/offer.jpg"
-        alt="عرض خاص"
-      >
 
     </div>
 
@@ -1253,32 +1292,51 @@ footer strong{
 
 <section class="hero">
 
-  <div class="hero-content">
+  <div class="hero-main">
 
-    <div class="hero-small">
-      من قلب إسكندرية ❤️
+
+    <!-- OFFER CARD -->
+
+    <div class="hero-offer">
+
+      <img
+        src="images/offer.jpg"
+        alt="عرض خاص"
+      >
+
     </div>
 
-    <h1>
-      هريسة الحلبي
-    </h1>
 
-    <h2>
-      منذ عام 1909
-    </h2>
+    <!-- HERO TEXT -->
 
-    <p>
-      طعم اتعرف واتحب من سنين...
-      اختار اللي نفسك فيه، حدد الوزن،
-      وإطلبه بسهولة لحد باب البيت.
-    </p>
+    <div class="hero-content">
 
-    <button
-      class="hero-btn"
-      onclick="goMenu()"
-    >
-      شوف المنيو
-    </button>
+      <div class="hero-small">
+        من قلب إسكندرية ❤️
+      </div>
+
+      <h1>
+        هريسة الحلبي
+      </h1>
+
+      <h2>
+        منذ عام 1909
+      </h2>
+
+      <p>
+        طعم اتعرف واتحب من سنين...
+        اختار اللي نفسك فيه، حدد الوزن،
+        وإطلبه بسهولة لحد باب البيت.
+      </p>
+
+      <button
+        class="hero-btn"
+        onclick="goMenu()"
+      >
+        شوف المنيو
+      </button>
+
+    </div>
 
   </div>
 
@@ -2013,65 +2071,6 @@ let currentQty = 1;
 
 
 /* =========================
-   LOAD SAVED CART
-========================= */
-
-function loadCart(){
-
-  try{
-
-    const savedCart =
-      localStorage.getItem(
-        "halabyCart"
-      );
-
-    if(savedCart){
-
-      const parsedCart =
-        JSON.parse(savedCart);
-
-      if(Array.isArray(parsedCart)){
-
-        cart = parsedCart;
-
-      }
-
-    }
-
-  }catch(error){
-
-    cart = [];
-
-  }
-
-}
-
-
-/* =========================
-   SAVE CART
-========================= */
-
-function saveCart(){
-
-  try{
-
-    localStorage.setItem(
-      "halabyCart",
-      JSON.stringify(cart)
-    );
-
-  }catch(error){
-
-    console.log(
-      "تعذر حفظ السلة"
-    );
-
-  }
-
-}
-
-
-/* =========================
    FIND PRODUCT
 ========================= */
 
@@ -2531,10 +2530,6 @@ function addToCart(){
   }
 
 
-  /* حفظ السلة */
-
-  saveCart();
-
   updateCartCount();
 
   closeProduct();
@@ -2852,10 +2847,6 @@ function changeCart(
   }
 
 
-  /* حفظ التغيير */
-
-  saveCart();
-
   updateCartCount();
 
   renderCart();
@@ -2874,10 +2865,6 @@ function removeCart(index){
     1
   );
 
-
-  /* حفظ التغيير */
-
-  saveCart();
 
   updateCartCount();
 
@@ -3282,12 +3269,6 @@ document
    START
 ========================= */
 
-/* تحميل السلة القديمة أولاً */
-
-loadCart();
-
-/* ثم عرض المنتجات والعدد */
-
 renderProducts();
 
 updateCartCount();
@@ -3296,3 +3277,4 @@ updateCartCount();
 
 </body>
 </html>
+```
