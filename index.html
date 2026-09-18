@@ -13,16 +13,30 @@
 <style>
 
 :root{
-    --gold:#d6ad55;
-    --gold-light:#f2d58a;
-    --bg:#080706;
-    --bg2:#110d09;
-    --card:#17110d;
-    --text:#f8f2e7;
-    --muted:#b9aea0;
-    --border:rgba(214,173,85,.20);
-    --shadow:0 20px 60px rgba(0,0,0,.45);
+    --gold:#e7b957;
+    --gold-light:#ffe2a0;
+    --gold-dark:#a96f20;
+
+    --cream:#fff4dc;
+
+    --bg:#080503;
+    --bg2:#120904;
+    --brown:#211008;
+    --brown2:#30170a;
+
+    --card:#1b0e08;
+    --card2:#261309;
+
+    --text:#fff8ec;
+    --muted:#c7b7a2;
+
+    --border:rgba(231,185,87,.24);
+
+    --shadow:0 25px 70px rgba(0,0,0,.55);
 }
+
+
+/* ================= RESET ================= */
 
 *{
     box-sizing:border-box;
@@ -36,28 +50,63 @@ html{
 
 body{
     font-family:"Cairo",sans-serif;
+
     background:
-        radial-gradient(circle at 15% 10%,rgba(130,75,25,.18),transparent 28%),
-        radial-gradient(circle at 85% 45%,rgba(95,55,20,.14),transparent 30%),
-        linear-gradient(180deg,#070605,#120c08,#080706,#130d09,#070605);
-    background-size:100% 100%,100% 100%,100% 180%;
+        radial-gradient(
+            circle at 10% 5%,
+            rgba(218,145,43,.20),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(139,65,20,.22),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 70%,
+            rgba(220,169,65,.08),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #070403 0%,
+            #160a05 22%,
+            #090504 45%,
+            #1a0b05 70%,
+            #060302 100%
+        );
+
     color:var(--text);
     min-height:100vh;
     overflow-x:hidden;
-    transition:background .8s ease;
+
+    transition:background 1s ease;
 }
 
-/* لمعة خفيفة تتحرك مع الصفحة */
+
+/* لمعة ثابتة ناعمة */
+
 body::before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
+
     background:
-        radial-gradient(circle at 20% 30%,rgba(214,173,85,.035),transparent 25%),
-        radial-gradient(circle at 80% 70%,rgba(120,70,30,.04),transparent 25%);
+        radial-gradient(
+            circle at 25% 25%,
+            rgba(255,213,120,.055),
+            transparent 24%
+        ),
+        radial-gradient(
+            circle at 75% 75%,
+            rgba(182,91,25,.055),
+            transparent 28%
+        );
+
     z-index:-1;
 }
+
 
 /* ================= HEADER ================= */
 
@@ -65,52 +114,91 @@ header{
     position:sticky;
     top:0;
     z-index:1000;
+
     height:76px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:0 5%;
-    background:rgba(7,6,5,.84);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(214,173,85,.12);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(12,6,3,.94),
+            rgba(35,15,6,.91),
+            rgba(10,5,3,.94)
+        );
+
+    backdrop-filter:blur(20px);
+
+    border-bottom:1px solid rgba(231,185,87,.20);
+
+    box-shadow:
+        0 8px 35px rgba(0,0,0,.25);
 }
+
 
 .logo{
     display:flex;
     align-items:center;
     gap:12px;
+
     text-decoration:none;
     color:white;
 }
 
+
 .logo-circle{
-    width:43px;
-    height:43px;
+    width:44px;
+    height:44px;
+
     border-radius:50%;
-    border:1px solid var(--gold);
+
     display:flex;
     align-items:center;
     justify-content:center;
+
+    border:1px solid var(--gold);
+
     color:var(--gold-light);
+
     font-family:"Playfair Display",serif;
-    font-size:17px;
-    box-shadow:0 0 25px rgba(214,173,85,.10);
+    font-size:18px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(231,185,87,.18),
+            rgba(50,20,5,.4)
+        );
+
+    box-shadow:
+        0 0 25px rgba(231,185,87,.13),
+        inset 0 0 18px rgba(231,185,87,.06);
 }
+
 
 .logo-text{
     line-height:1.1;
 }
 
+
 .logo-text strong{
     display:block;
+
     color:var(--gold-light);
+
     font-size:16px;
 }
 
+
 .logo-text small{
-    color:#a89b8b;
+    color:#aa9780;
     font-size:10px;
 }
+
 
 .header-actions{
     display:flex;
@@ -118,492 +206,965 @@ header{
     gap:10px;
 }
 
+
 .cart-button,
 .search-button{
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.035);
+    border:1px solid rgba(231,185,87,.25);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.06),
+            rgba(231,185,87,.035)
+        );
+
     color:white;
+
     border-radius:14px;
+
     padding:10px 14px;
+
     cursor:pointer;
+
     transition:.25s;
+
     font-family:inherit;
 }
+
 
 .cart-button:hover,
 .search-button:hover{
     border-color:var(--gold);
+
     color:var(--gold-light);
+
     transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 25px rgba(231,185,87,.10);
 }
 
+
 .cart-count{
-    background:var(--gold);
-    color:#20170c;
+    background:
+        linear-gradient(
+            135deg,
+            #ffe29a,
+            #c58b2d
+        );
+
+    color:#241405;
+
     min-width:22px;
     height:22px;
+
     display:inline-flex;
     align-items:center;
     justify-content:center;
+
     border-radius:50%;
+
     font-size:11px;
     font-weight:900;
+
     margin-right:5px;
 }
+
 
 /* ================= HERO ================= */
 
 .hero{
-    min-height:610px;
+    min-height:500px;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:70px 5% 90px;
+
+    padding:45px 5% 25px;
+
     position:relative;
     overflow:hidden;
 }
 
+
 .hero::before{
     content:"";
+
     position:absolute;
-    width:500px;
-    height:500px;
-    background:radial-gradient(circle,rgba(214,173,85,.10),transparent 65%);
-    top:-180px;
+
+    width:650px;
+    height:650px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(231,185,87,.14),
+            rgba(173,82,20,.06) 35%,
+            transparent 68%
+        );
+
+    top:-260px;
     right:20%;
+
     pointer-events:none;
 }
 
+
+.hero::after{
+    content:"";
+
+    position:absolute;
+
+    width:450px;
+    height:450px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(139,57,16,.13),
+            transparent 68%
+        );
+
+    bottom:-250px;
+    left:8%;
+
+    pointer-events:none;
+}
+
+
+/*
+    LTR هنا عشان الصورة تفضل على الشمال
+    والمحتوى يفضل ناحية اليمين منها
+*/
+
 .hero-main{
     width:min(1150px,100%);
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
-    gap:45px;
+
+    gap:35px;
+
+    direction:ltr;
+
+    position:relative;
+    z-index:2;
 }
 
-/* الصورة فقط هي اللي مائلة */
+
+/* الصورة فقط مائلة */
+
 .hero-offer{
-    width:145px;
-    height:215px;
+    width:132px;
+    height:198px;
+
     flex:none;
+
     transform:rotate(-6deg);
-    border-radius:22px;
+
+    border-radius:20px;
+
     overflow:hidden;
-    border:1px solid rgba(214,173,85,.55);
+
+    border:1px solid rgba(231,185,87,.65);
+
+    background:#140803;
+
     box-shadow:
-        0 25px 60px rgba(0,0,0,.6),
-        0 0 30px rgba(214,173,85,.08);
+        0 25px 65px rgba(0,0,0,.65),
+        0 0 35px rgba(231,185,87,.10);
+
     transition:.4s;
-    order:2;
+
+    order:0;
 }
+
 
 .hero-offer:hover{
-    transform:rotate(-3deg) scale(1.035);
+    transform:rotate(-3deg) scale(1.04);
+
     border-color:var(--gold-light);
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.7),
+        0 0 40px rgba(231,185,87,.16);
 }
+
 
 .hero-offer img{
     width:100%;
     height:100%;
+
     display:block;
+
     object-fit:cover;
 }
 
+
 .hero-content{
     text-align:center;
+
     max-width:720px;
+
+    direction:rtl;
+
+    order:1;
 }
+
 
 .hero-kicker{
     color:var(--gold);
+
     font-size:13px;
-    letter-spacing:2px;
-    margin-bottom:15px;
+
+    letter-spacing:3px;
+
+    margin-bottom:12px;
+
+    font-weight:700;
 }
+
 
 .hero-title{
     font-family:"Playfair Display","Cairo",serif;
-    font-size:clamp(45px,7vw,82px);
+
+    font-size:clamp(48px,7vw,82px);
+
     line-height:1;
-    color:#fff;
-    text-shadow:0 10px 40px rgba(0,0,0,.5);
+
+    color:#fffaf0;
+
+    text-shadow:
+        0 10px 40px rgba(0,0,0,.65);
+
+    white-space:nowrap;
 }
+
 
 .hero-title span{
     color:var(--gold-light);
+
+    text-shadow:
+        0 0 30px rgba(231,185,87,.12);
 }
 
+
 .hero-sub{
-    margin:22px auto;
-    color:#c5b9a9;
+    margin:18px auto;
+
+    color:#cbbba7;
+
     max-width:600px;
-    line-height:2;
-    font-size:15px;
+
+    line-height:1.9;
+
+    font-size:14px;
 }
+
 
 .hero-buttons{
     display:flex;
+
     justify-content:center;
-    gap:12px;
-    margin-top:28px;
+
+    gap:11px;
+
+    margin-top:20px;
+
     flex-wrap:wrap;
 }
+
 
 .main-btn,
 .secondary-btn{
     border-radius:14px;
-    padding:13px 24px;
+
+    padding:12px 23px;
+
     cursor:pointer;
+
     font-family:inherit;
-    font-weight:700;
+
+    font-weight:800;
+
     transition:.3s;
 }
 
+
 .main-btn{
-    border:1px solid var(--gold);
-    background:linear-gradient(135deg,#d8b35d,#a87d2d);
-    color:#21170a;
-    box-shadow:0 10px 35px rgba(214,173,85,.14);
+    border:1px solid #edc66d;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4d27e 0%,
+            #d6a83f 45%,
+            #a96f20 100%
+        );
+
+    color:#241405;
+
+    box-shadow:
+        0 10px 35px rgba(231,185,87,.16);
 }
+
 
 .main-btn:hover{
     transform:translateY(-3px);
-    box-shadow:0 15px 45px rgba(214,173,85,.25);
+
+    box-shadow:
+        0 16px 45px rgba(231,185,87,.28);
 }
 
+
 .secondary-btn{
-    background:transparent;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.055),
+            rgba(231,185,87,.025)
+        );
+
     color:white;
-    border:1px solid rgba(255,255,255,.16);
+
+    border:1px solid rgba(255,255,255,.18);
 }
+
 
 .secondary-btn:hover{
     border-color:var(--gold);
+
     color:var(--gold-light);
 }
 
-/* ================= SECTION ================= */
+
+/* ================= MENU SECTION ================= */
 
 .section{
     width:min(1250px,92%);
+
     margin:auto;
-    padding:75px 0;
+
+    /*
+       قربنا المسافة جدًا بعد الهيرو
+    */
+
+    padding:15px 0 65px;
 }
+
 
 .section-head{
     text-align:center;
-    margin-bottom:38px;
+
+    margin-bottom:22px;
 }
+
 
 .section-head small{
     color:var(--gold);
-    letter-spacing:2px;
+
+    letter-spacing:3px;
+
+    font-size:12px;
+
+    font-weight:700;
 }
+
 
 .section-head h2{
     font-family:"Playfair Display","Cairo",serif;
+
     font-size:36px;
-    margin-top:7px;
+
+    margin-top:4px;
+
+    color:var(--cream);
 }
+
 
 .section-head p{
     color:var(--muted);
-    font-size:14px;
-    margin-top:8px;
+
+    font-size:13px;
+
+    margin-top:5px;
 }
+
 
 /* ================= SEARCH ================= */
 
 .search-box{
     width:min(650px,100%);
-    margin:0 auto 35px;
+
+    margin:0 auto 28px;
+
     display:flex;
-    background:rgba(255,255,255,.035);
-    border:1px solid rgba(214,173,85,.16);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.055),
+            rgba(231,185,87,.035)
+        );
+
+    border:1px solid rgba(231,185,87,.20);
+
     border-radius:17px;
+
     padding:6px;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.20);
 }
+
 
 .search-box input{
     width:100%;
+
     border:0;
     outline:0;
+
     background:transparent;
+
     color:white;
+
     padding:12px;
+
     font-family:inherit;
+
     font-size:14px;
 }
 
+
+.search-box input::placeholder{
+    color:#93816d;
+}
+
+
 .search-box button{
     border:0;
-    background:var(--gold);
-    color:#21170a;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0cf79,
+            #b97d25
+        );
+
+    color:#241405;
+
     border-radius:12px;
+
     padding:0 18px;
+
     cursor:pointer;
+
     font-family:inherit;
+
     font-weight:bold;
 }
 
-/* ================= PRODUCTS ================= */
+
+/* ================= CATEGORIES ================= */
 
 .category-title{
     display:flex;
+
     align-items:center;
-    gap:12px;
-    margin:55px 0 22px;
+
+    gap:13px;
+
+    margin:38px 0 18px;
 }
+
+
+.category-title::before{
+    content:"";
+
+    width:28px;
+
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--gold)
+        );
+}
+
 
 .category-title::after{
     content:"";
+
     flex:1;
+
     height:1px;
-    background:linear-gradient(90deg,transparent,rgba(214,173,85,.25));
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(231,185,87,.35)
+        );
 }
+
 
 .category-title h3{
     font-size:23px;
-    color:#f6e3b2;
+
+    color:#ffe3a1;
+
     white-space:nowrap;
+
+    text-shadow:
+        0 5px 25px rgba(231,185,87,.10);
 }
+
+
+/* ================= PRODUCTS ================= */
 
 .products{
     display:grid;
+
     grid-template-columns:repeat(4,1fr);
-    gap:20px;
+
+    gap:18px;
 }
+
+
+/*
+    المنتجات تظهر عادي
+    بدون opacity
+    وبدون IntersectionObserver
+*/
 
 .product-card{
     background:
-        linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012)),
-        #120d09;
-    border:1px solid rgba(214,173,85,.13);
-    border-radius:22px;
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.065),
+            rgba(255,255,255,.018) 45%,
+            rgba(231,185,87,.025)
+        ),
+        linear-gradient(
+            180deg,
+            #211108,
+            #120805
+        );
+
+    border:1px solid rgba(231,185,87,.16);
+
+    border-radius:21px;
+
     overflow:hidden;
-    box-shadow:0 15px 45px rgba(0,0,0,.25);
-    transition:.35s;
-    opacity:0;
-    transform:translateY(25px);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.32);
+
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
 }
 
-.product-card.show{
-    opacity:1;
-    transform:translateY(0);
-}
 
 .product-card:hover{
-    transform:translateY(-8px);
-    border-color:rgba(214,173,85,.45);
+    transform:translateY(-7px);
+
+    border-color:rgba(231,185,87,.48);
+
     box-shadow:
-        0 25px 60px rgba(0,0,0,.45),
-        0 0 25px rgba(214,173,85,.07);
+        0 25px 60px rgba(0,0,0,.50),
+        0 0 30px rgba(231,185,87,.07);
 }
+
 
 .product-img{
     height:220px;
-    background:#0c0907;
+
+    background:
+        linear-gradient(
+            135deg,
+            #170904,
+            #2a1308
+        );
+
     overflow:hidden;
+
+    position:relative;
 }
+
+
+.product-img::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.07),
+            transparent 30%,
+            transparent 70%,
+            rgba(231,185,87,.04)
+        );
+
+    pointer-events:none;
+}
+
 
 .product-img img{
     width:100%;
     height:100%;
+
     object-fit:cover;
+
     display:block;
+
     transition:.5s;
 }
+
 
 .product-card:hover .product-img img{
     transform:scale(1.07);
 }
 
+
 .product-info{
-    padding:17px;
+    padding:16px;
 }
+
 
 .product-name{
     font-size:16px;
-    font-weight:700;
-    min-height:52px;
+
+    font-weight:800;
+
+    min-height:50px;
+
+    color:#fff5e5;
 }
+
 
 .product-price{
     color:var(--gold-light);
+
     font-size:18px;
-    font-weight:800;
-    margin:7px 0 14px;
+
+    font-weight:900;
+
+    margin:6px 0 13px;
 }
 
+
 .product-price small{
-    color:#9c9080;
+    color:#9f8d77;
+
     font-size:11px;
+
     font-weight:400;
 }
 
+
 .buy-btn{
     width:100%;
-    padding:11px;
+
+    padding:10px;
+
     border-radius:12px;
-    border:1px solid rgba(214,173,85,.35);
-    background:rgba(214,173,85,.08);
+
+    border:1px solid rgba(231,185,87,.34);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(231,185,87,.12),
+            rgba(231,185,87,.035)
+        );
+
     color:var(--gold-light);
+
     cursor:pointer;
+
     font-family:inherit;
-    font-weight:700;
+
+    font-weight:800;
+
     transition:.25s;
 }
 
+
 .buy-btn:hover{
-    background:var(--gold);
-    color:#20170c;
+    background:
+        linear-gradient(
+            135deg,
+            #f0cd76,
+            #b87d25
+        );
+
+    color:#211204;
+
+    border-color:var(--gold);
 }
+
 
 /* ================= MODAL ================= */
 
 .modal{
     position:fixed;
+
     inset:0;
-    background:rgba(0,0,0,.78);
-    backdrop-filter:blur(10px);
+
+    background:rgba(0,0,0,.82);
+
+    backdrop-filter:blur(12px);
+
     z-index:2000;
+
     display:none;
+
     align-items:center;
+
     justify-content:center;
+
     padding:20px;
 }
+
 
 .modal.active{
     display:flex;
 }
 
+
 .modal-box{
     width:min(500px,100%);
+
     max-height:90vh;
+
     overflow:auto;
+
     background:
-        linear-gradient(145deg,#1b130d,#0d0907);
-    border:1px solid rgba(214,173,85,.3);
+        linear-gradient(
+            145deg,
+            #291309,
+            #120705
+        );
+
+    border:1px solid rgba(231,185,87,.30);
+
     border-radius:25px;
-    box-shadow:0 30px 100px rgba(0,0,0,.65);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.70);
+
     position:relative;
+
     animation:modalIn .3s ease;
 }
 
+
 @keyframes modalIn{
-    from{opacity:0;transform:translateY(25px) scale(.97)}
-    to{opacity:1;transform:none}
+
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+
 }
+
 
 .modal-close{
     position:absolute;
+
     left:15px;
     top:15px;
+
     width:35px;
     height:35px;
+
     border-radius:50%;
-    border:1px solid rgba(255,255,255,.15);
-    background:rgba(0,0,0,.5);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    background:rgba(0,0,0,.55);
+
     color:white;
+
     cursor:pointer;
+
     z-index:2;
 }
+
 
 .modal-image{
     width:100%;
     height:280px;
 }
 
+
 .modal-image img{
     width:100%;
     height:100%;
+
     object-fit:cover;
 }
+
 
 .modal-content{
     padding:22px;
 }
 
+
 .modal-content h2{
     color:var(--gold-light);
+
     margin-bottom:7px;
 }
 
+
 .modal-content p{
-    color:#aaa;
+    color:#b5a594;
+
     font-size:13px;
 }
 
+
 .weight-title{
     margin-top:20px;
+
     margin-bottom:10px;
+
     color:#eee;
 }
 
+
 .weights{
     display:flex;
+
     gap:8px;
 }
 
+
 .weight-btn{
     flex:1;
+
     padding:11px;
+
     border-radius:12px;
+
     border:1px solid rgba(255,255,255,.12);
-    background:rgba(255,255,255,.04);
+
+    background:
+        rgba(255,255,255,.04);
+
     color:white;
+
     cursor:pointer;
+
     font-family:inherit;
 }
 
+
 .weight-btn.active{
-    background:rgba(214,173,85,.16);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(231,185,87,.22),
+            rgba(231,185,87,.07)
+        );
+
     border-color:var(--gold);
+
     color:var(--gold-light);
 }
+
 
 .modal-total{
     margin-top:18px;
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 }
+
 
 .modal-total strong{
     color:var(--gold-light);
+
     font-size:23px;
 }
 
+
 .qty{
     display:flex;
+
     align-items:center;
+
     gap:13px;
 }
+
 
 .qty button{
     width:35px;
     height:35px;
+
     border-radius:10px;
-    border:1px solid rgba(214,173,85,.3);
-    background:rgba(214,173,85,.07);
+
+    border:1px solid rgba(231,185,87,.3);
+
+    background:rgba(231,185,87,.07);
+
     color:var(--gold-light);
+
     cursor:pointer;
+
     font-size:18px;
 }
 
+
 .add-cart{
     width:100%;
+
     margin-top:18px;
+
     padding:14px;
+
     border:0;
+
     border-radius:13px;
-    background:linear-gradient(135deg,#e0bc68,#a77b2d);
-    color:#20170c;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f2d27c,
+            #d19a3b,
+            #9d651e
+        );
+
+    color:#201105;
+
     font-family:inherit;
+
     font-weight:900;
+
     cursor:pointer;
+
+    box-shadow:
+        0 10px 30px rgba(231,185,87,.13);
 }
+
 
 /* ================= CART ================= */
 
@@ -611,79 +1172,125 @@ header{
     padding:20px;
 }
 
+
 .cart-item{
     display:flex;
+
     align-items:center;
+
     gap:12px;
+
     padding:13px 0;
+
     border-bottom:1px solid rgba(255,255,255,.07);
 }
+
 
 .cart-item-info{
     flex:1;
 }
 
+
 .cart-item-info strong{
     display:block;
+
     font-size:14px;
 }
 
+
 .cart-item-info small{
-    color:#998d7d;
+    color:#998875;
 }
+
 
 .cart-controls{
     display:flex;
+
     align-items:center;
+
     gap:7px;
 }
+
 
 .cart-controls button{
     width:29px;
     height:29px;
+
     border-radius:8px;
-    border:1px solid rgba(214,173,85,.2);
-    background:rgba(214,173,85,.06);
+
+    border:1px solid rgba(231,185,87,.2);
+
+    background:rgba(231,185,87,.06);
+
     color:white;
+
     cursor:pointer;
 }
 
+
 .remove-btn{
-    color:#d77b70 !important;
+    color:#e07d72 !important;
 }
+
 
 .cart-summary{
     padding:20px;
+
     border-top:1px solid rgba(255,255,255,.08);
 }
 
+
 .summary-line{
     display:flex;
+
     justify-content:space-between;
+
     margin:8px 0;
-    color:#b9aea0;
+
+    color:#b9aa99;
 }
+
 
 .summary-line.total{
     color:white;
+
     font-size:19px;
+
     font-weight:800;
+
     padding-top:10px;
-    border-top:1px solid rgba(214,173,85,.14);
+
+    border-top:1px solid rgba(231,185,87,.16);
 }
+
 
 .checkout-btn{
     width:100%;
+
     margin-top:15px;
+
     padding:14px;
+
     border:0;
+
     border-radius:13px;
-    background:var(--gold);
-    color:#20170c;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0cf79,
+            #b87d26
+        );
+
+    color:#201105;
+
     font-family:inherit;
+
     font-weight:900;
+
     cursor:pointer;
 }
+
 
 /* ================= FORMS ================= */
 
@@ -691,196 +1298,402 @@ header{
     padding:22px;
 }
 
+
 .form h2{
     color:var(--gold-light);
+
     margin-bottom:18px;
 }
+
 
 .form-group{
     margin-bottom:13px;
 }
 
+
 .form-group label{
     display:block;
+
     font-size:12px;
+
     color:#aaa;
+
     margin-bottom:5px;
 }
+
 
 .form-group input,
 .form-group textarea,
 .form-group select{
     width:100%;
+
     padding:12px;
+
     border-radius:12px;
+
     border:1px solid rgba(255,255,255,.10);
-    background:#0d0907;
+
+    background:
+        linear-gradient(
+            135deg,
+            #160a06,
+            #0d0503
+        );
+
     color:white;
+
     outline:none;
+
     font-family:inherit;
 }
 
+
 .form-group textarea{
     min-height:80px;
+
     resize:vertical;
 }
+
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus{
     border-color:var(--gold);
+
+    box-shadow:
+        0 0 0 3px rgba(231,185,87,.06);
 }
 
+
 .order-total{
-    background:rgba(214,173,85,.07);
-    border:1px solid rgba(214,173,85,.15);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(231,185,87,.09),
+            rgba(126,57,17,.07)
+        );
+
+    border:1px solid rgba(231,185,87,.16);
+
     border-radius:14px;
+
     padding:14px;
+
     margin:15px 0;
 }
 
+
 .order-total div{
     display:flex;
+
     justify-content:space-between;
+
     margin:5px 0;
 }
 
+
 .order-total .final{
     color:var(--gold-light);
+
     font-size:20px;
+
     font-weight:900;
-    border-top:1px solid rgba(214,173,85,.15);
+
+    border-top:1px solid rgba(231,185,87,.15);
+
     margin-top:10px;
+
     padding-top:10px;
 }
+
 
 /* ================= EMPTY ================= */
 
 .empty{
     text-align:center;
-    color:#8e8376;
+
+    color:#988a79;
+
     padding:30px 10px;
 }
+
 
 /* ================= FOOTER ================= */
 
 footer{
-    margin-top:80px;
+    margin-top:45px;
+
     padding:55px 5%;
+
     text-align:center;
-    background:linear-gradient(180deg,transparent,#080605);
-    border-top:1px solid rgba(214,173,85,.10);
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            #070302 70%
+        );
+
+    border-top:1px solid rgba(231,185,87,.13);
 }
+
 
 .footer-logo{
     font-family:"Playfair Display",serif;
+
     color:var(--gold-light);
+
     font-size:25px;
 }
 
+
 footer p{
-    color:#81776c;
+    color:#817366;
+
     font-size:12px;
+
     margin-top:8px;
 }
 
+
 .gold-line{
     width:70px;
-    height:1px;
-    background:var(--gold);
+
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--gold),
+            transparent
+        );
+
     margin:18px auto;
 }
+
+
+/* ================= TOAST ================= */
+
+.toast{
+
+    position:fixed;
+
+    bottom:25px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:5000;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1cf79,
+            #b87b25
+        );
+
+    color:#201105;
+
+    padding:12px 22px;
+
+    border-radius:14px;
+
+    font-weight:800;
+
+    font-size:13px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.5);
+
+    animation:toastIn .3s ease;
+
+}
+
+
+@keyframes toastIn{
+
+    from{
+        opacity:0;
+        transform:translate(-50%,15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translate(-50%,0);
+    }
+
+}
+
 
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:1000px){
+
     .products{
         grid-template-columns:repeat(3,1fr);
     }
+
 }
+
 
 @media(max-width:720px){
 
     header{
         height:68px;
+
         padding:0 4%;
     }
+
 
     .logo-text{
         display:none;
     }
 
+
     .hero{
-        min-height:570px;
-        padding:55px 5% 70px;
+        min-height:auto;
+
+        padding:35px 5% 20px;
     }
+
 
     .hero-main{
-        gap:25px;
+
+        gap:20px;
+
         flex-direction:column;
+
+        direction:rtl;
     }
 
+
     .hero-offer{
+
         order:0;
-        width:115px;
-        height:170px;
+
+        width:108px;
+        height:158px;
+
         transform:rotate(-5deg);
     }
 
+
+    .hero-content{
+
+        order:1;
+
+        width:100%;
+    }
+
+
     .hero-title{
         font-size:48px;
+
+        white-space:normal;
     }
+
 
     .hero-sub{
         font-size:13px;
-        line-height:1.9;
+
+        line-height:1.85;
+
+        margin:14px auto;
     }
+
+
+    .hero-buttons{
+        margin-top:16px;
+    }
+
 
     .section{
+
         width:92%;
-        padding:55px 0;
+
+        padding:8px 0 50px;
     }
 
+
+    .section-head{
+
+        margin-bottom:18px;
+    }
+
+
+    .section-head h2{
+        font-size:31px;
+    }
+
+
+    .search-box{
+
+        margin-bottom:20px;
+    }
+
+
     .products{
+
         grid-template-columns:repeat(2,1fr);
+
         gap:12px;
     }
+
 
     .product-img{
         height:175px;
     }
 
+
     .product-info{
-        padding:13px;
+        padding:12px;
     }
+
 
     .product-name{
         font-size:13px;
+
         min-height:45px;
     }
+
 
     .product-price{
         font-size:16px;
     }
 
+
     .buy-btn{
         padding:9px;
+
         font-size:12px;
     }
+
+
+    .category-title{
+
+        margin:30px 0 15px;
+    }
+
 
     .category-title h3{
         font-size:19px;
     }
 
+
     .header-actions{
         gap:5px;
     }
+
 
     .cart-button,
     .search-button{
         padding:8px 10px;
     }
+
 }
+
 
 @media(max-width:420px){
 
@@ -888,22 +1701,27 @@ footer p{
         grid-template-columns:1fr 1fr;
     }
 
+
     .product-img{
         height:145px;
     }
+
 
     .hero-title{
         font-size:42px;
     }
 
+
     .hero-offer{
-        width:105px;
-        height:155px;
+        width:100px;
+        height:150px;
     }
+
 
     .modal-image{
         height:230px;
     }
+
 }
 
 </style>
@@ -911,38 +1729,80 @@ footer p{
 
 <body>
 
+
+<!-- ================= HEADER ================= -->
+
 <header>
 
     <a href="#" class="logo">
-        <div class="logo-circle">H</div>
-        <div class="logo-text">
-            <strong>هريسة الحلبي</strong>
-            <small>منذ 1909</small>
+
+        <div class="logo-circle">
+            H
         </div>
+
+        <div class="logo-text">
+
+            <strong>
+                هريسة الحلبي
+            </strong>
+
+            <small>
+                منذ 1909
+            </small>
+
+        </div>
+
     </a>
 
-    <div class="header-actions">
-        <button class="search-button" onclick="focusSearch()">⌕ بحث</button>
 
-        <button class="cart-button" onclick="openCart()">
-            🛒 السلة
-            <span class="cart-count" id="cartCount">0</span>
+    <div class="header-actions">
+
+        <button
+            class="search-button"
+            onclick="focusSearch()"
+        >
+            ⌕ بحث
         </button>
+
+
+        <button
+            class="cart-button"
+            onclick="openCart()"
+        >
+            🛒 السلة
+
+            <span
+                class="cart-count"
+                id="cartCount"
+            >
+                0
+            </span>
+
+        </button>
+
     </div>
 
 </header>
 
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
     <div class="hero-main">
 
-        <!-- الصورة هنا على الشمال في الكمبيوتر -->
+
+        <!-- صورة العرض -->
+
         <div class="hero-offer">
-            <img src="images/offer.jpg" alt="عرض خاص">
+
+            <img
+                src="images/offer.jpg"
+                alt="عرض خاص"
+            >
+
         </div>
+
 
         <div class="hero-content">
 
@@ -950,22 +1810,40 @@ footer p{
                 HALABY • EST. 1909
             </div>
 
+
             <h1 class="hero-title">
-                هريسة <span>الحلبي</span>
+
+                هريسة
+                <span>الحلبي</span>
+
             </h1>
 
+
             <p class="hero-sub">
-                طعم له حكاية من زمان، وحلويات معمولة بحب وجودة تليق باسم الحلبي.
+
+                طعم له حكاية من زمان،
+                وحلويات معمولة بحب وجودة تليق باسم الحلبي.
+
             </p>
 
+
             <div class="hero-buttons">
-                <button class="main-btn" onclick="document.getElementById('menu').scrollIntoView()">
+
+                <button
+                    class="main-btn"
+                    onclick="document.getElementById('menu').scrollIntoView()"
+                >
                     شوف المنيو
                 </button>
 
-                <button class="secondary-btn" onclick="openCart()">
+
+                <button
+                    class="secondary-btn"
+                    onclick="openCart()"
+                >
                     🛒 السلة
                 </button>
+
             </div>
 
         </div>
@@ -975,25 +1853,43 @@ footer p{
 </section>
 
 
-<!-- MENU -->
+<!-- ================= MENU ================= -->
 
-<main id="menu" class="section">
+<main
+    id="menu"
+    class="section"
+>
 
     <div class="section-head">
-        <small>OUR MENU</small>
-        <h2>اختار اللي نفسك فيه</h2>
-        <p>حلويات شرقية وغربية ومخبوزات بأسلوب الحلبي</p>
+
+        <small>
+            OUR MENU
+        </small>
+
+        <h2>
+            اختار اللي نفسك فيه
+        </h2>
+
+        <p>
+            حلويات شرقية وغربية ومخبوزات بأسلوب الحلبي
+        </p>
+
     </div>
 
 
     <div class="search-box">
+
         <input
             id="searchInput"
             type="text"
             placeholder="دور على الصنف اللي نفسك فيه..."
             oninput="searchProducts()"
         >
-        <button onclick="searchProducts()">بحث</button>
+
+        <button onclick="searchProducts()">
+            بحث
+        </button>
+
     </div>
 
 
@@ -1002,36 +1898,60 @@ footer p{
 </main>
 
 
+<!-- ================= FOOTER ================= -->
+
 <footer>
 
-    <div class="footer-logo">هريسة الحلبي</div>
+    <div class="footer-logo">
+        هريسة الحلبي
+    </div>
 
     <div class="gold-line"></div>
 
-    <p>منذ 1909 • طعم له حكاية</p>
+    <p>
+        منذ 1909 • طعم له حكاية
+    </p>
 
 </footer>
 
 
-<!-- PRODUCT MODAL -->
+<!-- ================= PRODUCT MODAL ================= -->
 
-<div class="modal" id="productModal">
+<div
+    class="modal"
+    id="productModal"
+>
 
     <div class="modal-box">
 
-        <button class="modal-close" onclick="closeProductModal()">×</button>
+        <button
+            class="modal-close"
+            onclick="closeProductModal()"
+        >
+            ×
+        </button>
+
 
         <div class="modal-image">
-            <img id="modalImage" src="" alt="">
+
+            <img
+                id="modalImage"
+                src=""
+                alt=""
+            >
+
         </div>
+
 
         <div class="modal-content">
 
             <h2 id="modalName"></h2>
 
+
             <p id="modalDescription">
                 اختار الكمية المناسبة ليك.
             </p>
+
 
             <div id="weightArea">
 
@@ -1039,17 +1959,29 @@ footer p{
                     الوزن
                 </div>
 
+
                 <div class="weights">
 
-                    <button class="weight-btn" onclick="selectWeight(.25,this)">
+                    <button
+                        class="weight-btn"
+                        onclick="selectWeight(.25,this)"
+                    >
                         ¼ كيلو
                     </button>
 
-                    <button class="weight-btn" onclick="selectWeight(.5,this)">
+
+                    <button
+                        class="weight-btn"
+                        onclick="selectWeight(.5,this)"
+                    >
                         ½ كيلو
                     </button>
 
-                    <button class="weight-btn active" onclick="selectWeight(1,this)">
+
+                    <button
+                        class="weight-btn active"
+                        onclick="selectWeight(1,this)"
+                    >
                         1 كيلو
                     </button>
 
@@ -1057,23 +1989,43 @@ footer p{
 
             </div>
 
+
             <div class="modal-total">
 
-                <strong id="modalPrice">0 جنيه</strong>
+                <strong id="modalPrice">
+                    0 جنيه
+                </strong>
+
 
                 <div class="qty">
 
-                    <button onclick="changeModalQty(-1)">−</button>
+                    <button
+                        onclick="changeModalQty(-1)"
+                    >
+                        −
+                    </button>
 
-                    <span id="modalQty">1</span>
 
-                    <button onclick="changeModalQty(1)">+</button>
+                    <span id="modalQty">
+                        1
+                    </span>
+
+
+                    <button
+                        onclick="changeModalQty(1)"
+                    >
+                        +
+                    </button>
 
                 </div>
 
             </div>
 
-            <button class="add-cart" onclick="addCurrentToCart()">
+
+            <button
+                class="add-cart"
+                onclick="addCurrentToCart()"
+            >
                 إضافة للسلة 🛒
             </button>
 
@@ -1084,40 +2036,83 @@ footer p{
 </div>
 
 
-<!-- CART MODAL -->
+<!-- ================= CART MODAL ================= -->
 
-<div class="modal" id="cartModal">
+<div
+    class="modal"
+    id="cartModal"
+>
 
     <div class="modal-box">
 
-        <button class="modal-close" onclick="closeCart()">×</button>
+        <button
+            class="modal-close"
+            onclick="closeCart()"
+        >
+            ×
+        </button>
+
 
         <div class="modal-content">
 
-            <h2>سلة الطلب 🛒</h2>
+            <h2>
+                سلة الطلب 🛒
+            </h2>
 
-            <div class="cart-items" id="cartItems"></div>
+
+            <div
+                class="cart-items"
+                id="cartItems"
+            ></div>
 
         </div>
+
 
         <div class="cart-summary">
 
             <div class="summary-line">
-                <span>المجموع</span>
-                <strong id="cartSubtotal">0 جنيه</strong>
+
+                <span>
+                    المجموع
+                </span>
+
+                <strong id="cartSubtotal">
+                    0 جنيه
+                </strong>
+
             </div>
+
 
             <div class="summary-line">
-                <span>التوصيل</span>
-                <strong>35 جنيه</strong>
+
+                <span>
+                    التوصيل
+                </span>
+
+                <strong>
+                    35 جنيه
+                </strong>
+
             </div>
+
 
             <div class="summary-line total">
-                <span>الإجمالي</span>
-                <strong id="cartTotal">35 جنيه</strong>
+
+                <span>
+                    الإجمالي
+                </span>
+
+                <strong id="cartTotal">
+                    35 جنيه
+                </strong>
+
             </div>
 
-            <button class="checkout-btn" onclick="openCheckout()">
+
+            <button
+                class="checkout-btn"
+                onclick="openCheckout()"
+            >
                 إتمام الطلب
             </button>
 
@@ -1128,71 +2123,167 @@ footer p{
 </div>
 
 
-<!-- CHECKOUT -->
+<!-- ================= CHECKOUT ================= -->
 
-<div class="modal" id="checkoutModal">
+<div
+    class="modal"
+    id="checkoutModal"
+>
 
     <div class="modal-box">
 
-        <button class="modal-close" onclick="closeCheckout()">×</button>
+        <button
+            class="modal-close"
+            onclick="closeCheckout()"
+        >
+            ×
+        </button>
+
 
         <div class="form">
 
-            <h2>بيانات الطلب 📦</h2>
+            <h2>
+                بيانات الطلب 📦
+            </h2>
+
 
             <div class="form-group">
-                <label>الاسم</label>
-                <input id="customerName" type="text" placeholder="اكتب اسمك">
+
+                <label>
+                    الاسم
+                </label>
+
+                <input
+                    id="customerName"
+                    type="text"
+                    placeholder="اكتب اسمك"
+                >
+
             </div>
 
-            <div class="form-group">
-                <label>رقم الموبايل</label>
-                <input id="customerPhone" type="tel" placeholder="01xxxxxxxxx">
-            </div>
 
             <div class="form-group">
-                <label>العنوان</label>
-                <textarea id="customerAddress" placeholder="اكتب العنوان بالتفصيل"></textarea>
+
+                <label>
+                    رقم الموبايل
+                </label>
+
+                <input
+                    id="customerPhone"
+                    type="tel"
+                    placeholder="01xxxxxxxxx"
+                >
+
             </div>
 
+
             <div class="form-group">
-                <label>اختار أقرب فرع</label>
+
+                <label>
+                    العنوان
+                </label>
+
+                <textarea
+                    id="customerAddress"
+                    placeholder="اكتب العنوان بالتفصيل"
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    اختار أقرب فرع
+                </label>
+
 
                 <select id="customerBranch">
 
-                    <option value="">اختار الفرع</option>
-                    <option>سموحة</option>
-                    <option>رشدي</option>
-                    <option>جليم</option>
-                    <option>المندرة</option>
-                    <option>العجمي</option>
-                    <option>محمد نجيب</option>
-                    <option>المنشية</option>
+                    <option value="">
+                        اختار الفرع
+                    </option>
+
+                    <option>
+                        سموحة
+                    </option>
+
+                    <option>
+                        رشدي
+                    </option>
+
+                    <option>
+                        جليم
+                    </option>
+
+                    <option>
+                        المندرة
+                    </option>
+
+                    <option>
+                        العجمي
+                    </option>
+
+                    <option>
+                        محمد نجيب
+                    </option>
+
+                    <option>
+                        المنشية
+                    </option>
 
                 </select>
 
             </div>
 
+
             <div class="order-total">
 
                 <div>
-                    <span>الطلبات</span>
-                    <strong id="checkoutSubtotal">0 جنيه</strong>
+
+                    <span>
+                        الطلبات
+                    </span>
+
+                    <strong id="checkoutSubtotal">
+                        0 جنيه
+                    </strong>
+
                 </div>
+
 
                 <div>
-                    <span>التوصيل</span>
-                    <strong>35 جنيه</strong>
+
+                    <span>
+                        التوصيل
+                    </span>
+
+                    <strong>
+                        35 جنيه
+                    </strong>
+
                 </div>
 
+
                 <div class="final">
-                    <span>الإجمالي</span>
-                    <strong id="checkoutTotal">0 جنيه</strong>
+
+                    <span>
+                        الإجمالي
+                    </span>
+
+                    <strong id="checkoutTotal">
+                        0 جنيه
+                    </strong>
+
                 </div>
 
             </div>
 
-            <button class="checkout-btn" onclick="sendOrderWhatsApp()">
+
+            <button
+                class="checkout-btn"
+                onclick="sendOrderWhatsApp()"
+            >
                 إرسال الطلب على واتساب 📱
             </button>
 
@@ -1205,16 +2296,22 @@ footer p{
 
 <script>
 
+
 /* =====================================================
-   البيانات
+   الإعدادات
 ===================================================== */
 
-const WHATSAPP_NUMBER = "201204563039";
+const WHATSAPP_NUMBER =
+    "201204563039";
 
-const DELIVERY_FEE = 35;
+
+const DELIVERY_FEE =
+    35;
 
 
-/* المنتجات */
+/* =====================================================
+   المنتجات
+===================================================== */
 
 const products = [
 
@@ -1508,18 +2605,23 @@ const products = [
 
 let cart = [];
 
+
 function loadCart(){
 
     try{
 
-        const saved = localStorage.getItem("halabyCart");
+        const saved =
+            localStorage.getItem("halabyCart");
 
         if(saved){
 
-            const parsed = JSON.parse(saved);
+            const parsed =
+                JSON.parse(saved);
 
             if(Array.isArray(parsed)){
+
                 cart = parsed;
+
             }
 
         }
@@ -1544,7 +2646,7 @@ function saveCart(){
 
 
 /* =====================================================
-   عرض المنتجات
+   التصنيفات
 ===================================================== */
 
 const categories = [
@@ -1560,40 +2662,59 @@ const categories = [
 ];
 
 
+/* =====================================================
+   عرض المنتجات
+===================================================== */
+
 function renderProducts(list = products){
 
     const container =
-        document.getElementById("productsContainer");
+        document.getElementById(
+            "productsContainer"
+        );
+
 
     container.innerHTML = "";
+
 
     if(!list.length){
 
         container.innerHTML = `
+
             <div class="empty">
                 مفيش صنف بالاسم ده 😅
             </div>
+
         `;
 
         return;
+
     }
 
 
     categories.forEach(category => {
 
         const items =
-            list.filter(p => p.category === category);
+            list.filter(
+                p => p.category === category
+            );
 
-        if(!items.length) return;
+
+        if(!items.length)
+            return;
 
 
         const title =
             document.createElement("div");
 
-        title.className = "category-title";
+
+        title.className =
+            "category-title";
+
 
         title.innerHTML =
             `<h3>${category}</h3>`;
+
 
         container.appendChild(title);
 
@@ -1601,7 +2722,9 @@ function renderProducts(list = products){
         const grid =
             document.createElement("div");
 
-        grid.className = "products";
+
+        grid.className =
+            "products";
 
 
         items.forEach(product => {
@@ -1609,7 +2732,10 @@ function renderProducts(list = products){
             const card =
                 document.createElement("div");
 
-            card.className = "product-card";
+
+            card.className =
+                "product-card";
+
 
             card.innerHTML = `
 
@@ -1624,11 +2750,13 @@ function renderProducts(list = products){
 
                 </div>
 
+
                 <div class="product-info">
 
                     <div class="product-name">
                         ${product.name}
                     </div>
+
 
                     <div class="product-price">
 
@@ -1643,6 +2771,7 @@ function renderProducts(list = products){
 
                     </div>
 
+
                     <button
                         class="buy-btn"
                         onclick="openProduct(${product.id})"
@@ -1654,6 +2783,7 @@ function renderProducts(list = products){
 
             `;
 
+
             grid.appendChild(card);
 
         });
@@ -1662,9 +2792,6 @@ function renderProducts(list = products){
         container.appendChild(grid);
 
     });
-
-
-    observeCards();
 
 }
 
@@ -1707,16 +2834,26 @@ function searchProducts(){
 
 function focusSearch(){
 
-    document
-        .getElementById("searchInput")
-        .focus();
+    const input =
+        document.getElementById(
+            "searchInput"
+        );
 
-    document
-        .getElementById("searchInput")
-        .scrollIntoView({
-            behavior:"smooth",
-            block:"center"
-        });
+
+    input.scrollIntoView({
+
+        behavior:"smooth",
+
+        block:"center"
+
+    });
+
+
+    setTimeout(() => {
+
+        input.focus();
+
+    },500);
 
 }
 
@@ -1735,9 +2872,13 @@ let currentModalQty = 1;
 function openProduct(id){
 
     currentProduct =
-        products.find(p => p.id === id);
+        products.find(
+            p => p.id === id
+        );
 
-    if(!currentProduct) return;
+
+    if(!currentProduct)
+        return;
 
 
     currentWeight = 1;
@@ -1752,21 +2893,27 @@ function openProduct(id){
 
     document
         .getElementById("modalName")
-        .textContent = currentProduct.name;
+        .textContent =
+            currentProduct.name;
 
 
     document
         .getElementById("modalQty")
-        .textContent = currentModalQty;
+        .textContent =
+            currentModalQty;
 
 
     const weightArea =
-        document.getElementById("weightArea");
+        document.getElementById(
+            "weightArea"
+        );
 
 
     if(currentProduct.weighted){
 
-        weightArea.style.display = "block";
+        weightArea.style.display =
+            "block";
+
 
         document
             .querySelectorAll(".weight-btn")
@@ -1774,13 +2921,15 @@ function openProduct(id){
                 btn.classList.remove("active")
             );
 
+
         document
             .querySelectorAll(".weight-btn")[2]
             .classList.add("active");
 
     }else{
 
-        weightArea.style.display = "none";
+        weightArea.style.display =
+            "none";
 
     }
 
@@ -1806,7 +2955,9 @@ function closeProductModal(){
 
 function selectWeight(weight,button){
 
-    currentWeight = weight;
+    currentWeight =
+        weight;
+
 
     document
         .querySelectorAll(".weight-btn")
@@ -1814,7 +2965,9 @@ function selectWeight(weight,button){
             btn.classList.remove("active")
         );
 
+
     button.classList.add("active");
+
 
     updateModalPrice();
 
@@ -1825,13 +2978,19 @@ function changeModalQty(change){
 
     currentModalQty += change;
 
+
     if(currentModalQty < 1){
+
         currentModalQty = 1;
+
     }
+
 
     document
         .getElementById("modalQty")
-        .textContent = currentModalQty;
+        .textContent =
+            currentModalQty;
+
 
     updateModalPrice();
 
@@ -1840,7 +2999,8 @@ function changeModalQty(change){
 
 function updateModalPrice(){
 
-    if(!currentProduct) return;
+    if(!currentProduct)
+        return;
 
 
     let price =
@@ -1866,7 +3026,8 @@ function updateModalPrice(){
 
 function addCurrentToCart(){
 
-    if(!currentProduct) return;
+    if(!currentProduct)
+        return;
 
 
     const unitPrice =
@@ -1884,23 +3045,29 @@ function addCurrentToCart(){
 
     if(existing){
 
-        existing.qty += currentModalQty;
+        existing.qty +=
+            currentModalQty;
 
     }else{
 
         cart.push({
 
-            id:currentProduct.id,
+            id:
+                currentProduct.id,
 
-            name:currentProduct.name,
+            name:
+                currentProduct.name,
 
-            price:unitPrice,
+            price:
+                unitPrice,
 
-            weight:currentProduct.weighted
+            weight:
+                currentProduct.weighted
                 ? currentWeight
                 : null,
 
-            qty:currentModalQty
+            qty:
+                currentModalQty
 
         });
 
@@ -1913,7 +3080,9 @@ function addCurrentToCart(){
 
     closeProductModal();
 
-    showToast("اتضاف للسلة 🛒");
+    showToast(
+        "اتضاف للسلة 🛒"
+    );
 
 }
 
@@ -1931,9 +3100,11 @@ function updateCartCount(){
             0
         );
 
+
     document
         .getElementById("cartCount")
-        .textContent = count;
+        .textContent =
+            count;
 
 }
 
@@ -1941,6 +3112,7 @@ function updateCartCount(){
 function openCart(){
 
     renderCart();
+
 
     document
         .getElementById("cartModal")
@@ -1961,16 +3133,21 @@ function closeCart(){
 function renderCart(){
 
     const box =
-        document.getElementById("cartItems");
+        document.getElementById(
+            "cartItems"
+        );
 
 
     if(!cart.length){
 
         box.innerHTML = `
+
             <div class="empty">
                 السلة لسه فاضية 🛒
             </div>
+
         `;
+
 
         updateCartTotals();
 
@@ -1984,16 +3161,18 @@ function renderCart(){
 
     cart.forEach((item,index) => {
 
-        const row =
-            document.createElement("div");
-
-        row.className = "cart-item";
-
-
         let weightText =
             item.weight
             ? ` • ${weightLabel(item.weight)}`
             : "";
+
+
+        const row =
+            document.createElement("div");
+
+
+        row.className =
+            "cart-item";
 
 
         row.innerHTML = `
@@ -2005,9 +3184,12 @@ function renderCart(){
                 </strong>
 
                 <small>
+
                     ${formatMoney(item.price)}
                     جنيه
+
                     ${weightText}
+
                 </small>
 
             </div>
@@ -2021,15 +3203,18 @@ function renderCart(){
                     +
                 </button>
 
+
                 <span>
                     ${item.qty}
                 </span>
+
 
                 <button
                     onclick="changeCart(${index},-1)"
                 >
                     −
                 </button>
+
 
                 <button
                     class="remove-btn"
@@ -2103,6 +3288,7 @@ function updateCartTotals(){
     const subtotal =
         getSubtotal();
 
+
     const total =
         subtotal + DELIVERY_FEE;
 
@@ -2129,7 +3315,9 @@ function openCheckout(){
 
     if(!cart.length){
 
-        showToast("السلة فاضية");
+        showToast(
+            "السلة فاضية"
+        );
 
         return;
 
@@ -2141,6 +3329,7 @@ function openCheckout(){
 
     const subtotal =
         getSubtotal();
+
 
     const total =
         subtotal + DELIVERY_FEE;
@@ -2207,12 +3396,16 @@ function sendOrderWhatsApp(){
         .value;
 
 
-    if(!name ||
-       !phone ||
-       !address ||
-       !branch){
+    if(
+        !name ||
+        !phone ||
+        !address ||
+        !branch
+    ){
 
-        showToast("كمل بيانات الطلب الأول");
+        showToast(
+            "كمل بيانات الطلب الأول"
+        );
 
         return;
 
@@ -2221,7 +3414,9 @@ function sendOrderWhatsApp(){
 
     if(!cart.length){
 
-        showToast("السلة فاضية");
+        showToast(
+            "السلة فاضية"
+        );
 
         return;
 
@@ -2230,6 +3425,7 @@ function sendOrderWhatsApp(){
 
     const subtotal =
         getSubtotal();
+
 
     const total =
         subtotal + DELIVERY_FEE;
@@ -2291,7 +3487,10 @@ ${index + 1}) ${item.name}${weight}
         encodeURIComponent(message);
 
 
-    window.open(url,"_blank");
+    window.open(
+        url,
+        "_blank"
+    );
 
 }
 
@@ -2305,8 +3504,10 @@ function weightLabel(weight){
     if(weight === .25)
         return "¼ كيلو";
 
+
     if(weight === .5)
         return "½ كيلو";
+
 
     return "1 كيلو";
 
@@ -2329,20 +3530,32 @@ function formatMoney(value){
 function showToast(text){
 
     const old =
-        document.querySelector(".toast");
+        document.querySelector(
+            ".toast"
+        );
 
-    if(old) old.remove();
+
+    if(old)
+        old.remove();
 
 
     const toast =
-        document.createElement("div");
-
-    toast.className = "toast";
-
-    toast.textContent = text;
+        document.createElement(
+            "div"
+        );
 
 
-    document.body.appendChild(toast);
+    toast.className =
+        "toast";
+
+
+    toast.textContent =
+        text;
+
+
+    document.body.appendChild(
+        toast
+    );
 
 
     setTimeout(() => {
@@ -2354,205 +3567,135 @@ function showToast(text){
 }
 
 
-/* Toast CSS */
-
-const toastStyle =
-document.createElement("style");
-
-toastStyle.textContent = `
-
-.toast{
-
-    position:fixed;
-
-    bottom:25px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    z-index:5000;
-
-    background:#d6ad55;
-
-    color:#20170c;
-
-    padding:12px 22px;
-
-    border-radius:14px;
-
-    font-weight:800;
-
-    font-size:13px;
-
-    box-shadow:0 15px 40px rgba(0,0,0,.4);
-
-    animation:toastIn .3s ease;
-
-}
-
-@keyframes toastIn{
-
-    from{
-        opacity:0;
-        transform:translate(-50%,15px);
-    }
-
-    to{
-        opacity:1;
-        transform:translate(-50%,0);
-    }
-
-}
-
-`;
-
-document.head.appendChild(toastStyle);
-
-
 /* =====================================================
-   SCROLL ANIMATION
+   إغلاق المودالات
 ===================================================== */
 
-function observeCards(){
+document
+    .getElementById("productModal")
+    .addEventListener(
+        "click",
+        function(e){
 
-    const cards =
-        document.querySelectorAll(".product-card");
+            if(e.target === this){
 
+                closeProductModal();
 
-    const observer =
-        new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if(entry.isIntersecting){
-
-                        entry.target.classList.add("show");
-
-                        observer.unobserve(entry.target);
-
-                    }
-
-                });
-
-            },
-            {
-                threshold:.12
             }
-        );
 
-
-    cards.forEach(card =>
-        observer.observe(card)
+        }
     );
 
-}
+
+document
+    .getElementById("cartModal")
+    .addEventListener(
+        "click",
+        function(e){
+
+            if(e.target === this){
+
+                closeCart();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById("checkoutModal")
+    .addEventListener(
+        "click",
+        function(e){
+
+            if(e.target === this){
+
+                closeCheckout();
+
+            }
+
+        }
+    );
 
 
 /* =====================================================
-   SCROLL COLOR EFFECT
+   تأثير لون الخلفية مع السكرول
 ===================================================== */
 
 let ticking = false;
 
 
-window.addEventListener("scroll",() => {
+window.addEventListener(
+    "scroll",
+    () => {
 
-    if(!ticking){
-
-        window.requestAnimationFrame(() => {
-
-            const scroll =
-                window.scrollY;
-
-            const max =
-                document.body.scrollHeight -
-                window.innerHeight;
-
-            const progress =
-                max > 0
-                ? scroll / max
-                : 0;
+        if(ticking)
+            return;
 
 
-            /*
-                تغيير بسيط في اتجاه التدرج
-                أثناء النزول والطلوع
-            */
+        window.requestAnimationFrame(
+            () => {
 
-            const x =
-                Math.round(10 + progress * 80);
+                const scroll =
+                    window.scrollY;
 
 
-            document.body.style.background =
+                const max =
+                    document.body.scrollHeight -
+                    window.innerHeight;
+
+
+                const progress =
+                    max > 0
+                    ? scroll / max
+                    : 0;
+
+
+                const x =
+                    Math.round(
+                        10 + progress * 80
+                    );
+
+
+                document.body.style.background =
 `
 radial-gradient(
-    circle at ${x}% 15%,
-    rgba(130,75,25,.16),
-    transparent 28%
+    circle at ${x}% 12%,
+    rgba(231,185,87,.17),
+    transparent 27%
 ),
 radial-gradient(
-    circle at ${100-x}% 70%,
-    rgba(95,55,20,.13),
+    circle at ${100-x}% 65%,
+    rgba(145,62,17,.20),
     transparent 30%
+),
+radial-gradient(
+    circle at 50% ${30 + progress * 45}%,
+    rgba(231,185,87,.055),
+    transparent 32%
 ),
 linear-gradient(
     180deg,
-    #070605 0%,
-    #120c08 25%,
-    #080706 50%,
-    #15100b 75%,
-    #070605 100%
+    #070403 0%,
+    #190b05 24%,
+    #080403 48%,
+    #1b0b05 73%,
+    #060302 100%
 )
 `;
 
-            ticking = false;
 
-        });
+                ticking = false;
+
+            }
+        );
+
 
         ticking = true;
 
     }
-
-});
-
-
-/* =====================================================
-   إغلاق المودال بالضغط خارج الصندوق
-===================================================== */
-
-document
-.getElementById("productModal")
-.addEventListener("click",function(e){
-
-    if(e.target === this){
-        closeProductModal();
-    }
-
-});
-
-
-document
-.getElementById("cartModal")
-.addEventListener("click",function(e){
-
-    if(e.target === this){
-        closeCart();
-    }
-
-});
-
-
-document
-.getElementById("checkoutModal")
-.addEventListener("click",function(e){
-
-    if(e.target === this){
-        closeCheckout();
-    }
-
-});
+);
 
 
 /* =====================================================
